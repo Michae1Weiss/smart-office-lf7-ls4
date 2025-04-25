@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sensor Dashboard</h1>
+            <div class="status-indicator" id="status-indicator">
+                <span class="status-dot offline" id="status-dot"></span>
+                <span id="status-text">Offline</span>
+            </div>
+        </header>
+        
+        <div class="control-panel">
+            <div class="polling-control">
+                <label for="polling-interval">Polling Interval:</label>
+                <select id="polling-interval">
+                    <option value="1000">1 second</option>
+                    <option value="5000" selected>5 seconds</option>
+                    <option value="10000">10 seconds</option>
+                    <option value="30000">30 seconds</option>
+                    <option value="60000">1 minute</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card temperature-card">
+                <h2>Temperature</h2>
+                <div class="sensor-value">
+                    <span id="temperature-value">--</span>
+                    <span class="unit" id="temperature-unit">°C</span>
+                </div>
+                <div class="sensor-details">
+                    <p>Sensor: <span id="temperature-sensor">--</span></p>
+                    <p>Last Update: <span id="temperature-timestamp">--</span></p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="temperature-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card humidity-card">
+                <h2>Humidity</h2>
+                <div class="sensor-value">
+                    <span id="humidity-value">--</span>
+                    <span class="unit" id="humidity-unit">%</span>
+                </div>
+                <div class="sensor-details">
+                    <p>Sensor: <span id="humidity-sensor">--</span></p>
+                    <p>Last Update: <span id="humidity-timestamp">--</span></p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="humidity-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="card noise-card">
+                <h2>Noise Level</h2>
+                <div class="sensor-value">
+                    <span id="noise-value">--</span>
+                    <span class="unit" id="noise-unit">events</span>
+                </div>
+                <div class="sensor-details">
+                    <p>Sensor: <span id="noise-sensor">--</span></p>
+                    <p>Period: <span id="noise-period">--</span> seconds</p>
+                    <p>Last Update: <span id="noise-timestamp">--</span></p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="noise-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="card status-card">
+            <h2>System Status</h2>
+            <div class="status-message" id="status-message">--</div>
+            <p>Last Status Update: <span id="status-timestamp">--</span></p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
